@@ -3,7 +3,7 @@
 a simple app that reneme subtitles files to be same its videoes files name. with GUI by tkinter.
 
 
-#1 HOW TO USE IT?
+## HOW TO USE IT?
 
 Run the app than enter the video and subtitle extension than select the folder where the files are.
 
