@@ -1,6 +1,6 @@
 # README
 
-a simple app that reneme subtitles files to be same its videoes files name. with GUI by tkinter.
+A simple app that reneme subtitles files to be same its videoes files name. with GUI by tkinter.
 
 
 ## HOW TO USE IT?
