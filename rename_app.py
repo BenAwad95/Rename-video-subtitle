@@ -14,13 +14,10 @@ def select_folder():
 
 def show_files():
 	e3.delete(0,END)
-	path = folder_exe.get()
-	V_exe = Video_exe.get()
-	s_exe = sub_exe.get()
-	for v,s in zip(glob.glob(path+"/*."+V_exe),glob.glob(path+"/*."+s_exe)):
-		a = len(path) + 1
-		v = v[a:]
-		s = s[a:]
+	folder_path = folder_path_variable.get().strip()
+	video_extension = video_extension_varible.get()
+	subtitle_extension = subtitle_extension_varible.get()
+	for v,s in zip(glob.glob1(folder_path, f"*.{video_extension}"), glob.glob1(folder_path, f"*.{subtitle_extension}")):
 		e3.insert(END,v)
 		e3.insert(END,s)
 	l3 = Label(app,text="If the Videos files goes correct with the subs order, prss Rename to make the changes")
@@ -29,12 +26,13 @@ def show_files():
 	b4.grid(row=6,column=3)
 
 def rename():
-	path = folder_exe.get()
-	V_exe = Video_exe.get()
-	s_exe = sub_exe.get()
-	for v,s in zip(glob.glob(path+"/*."+V_exe),glob.glob(path+"/*."+s_exe)):
-		new_name = v.replace(V_exe,s_exe)
-		os.rename(s,new_name)
+	folder_path = folder_path_variable.get()
+	video_extension = video_extension_varible.get()
+	subtitle_extension = subtitle_extension_varible.get()
+	for v,s in zip(glob.glob1(folder_path, f"*.{video_extension}"), glob.glob1(folder_path, f"*.{subtitle_extension}")):
+		print(v)
+		new_name = v.replace(video_extension,subtitle_extension)
+		os.rename(f"{folder_path}/{s}",f"{folder_path}/{new_name}")
 
 
 app = Tk()
@@ -47,22 +45,22 @@ app.minsize(700,300)
 app.wm_title("Rename files")
 l1 = Label(app,text="Video extension")
 l1.grid(row=1,column=1)
-Video_exe = StringVar()
-e1 = Entry(app,textvariable=Video_exe)
+video_extension_varible = StringVar()
+e1 = Entry(app,textvariable=video_extension_varible)
 e1.grid(row=1,column=2,pady=10)
 
 l2 = Label(app,text="Sub extension")
 l2.grid(row=2,column=1,pady=10)
-sub_exe = StringVar()
-e2 = Entry(app,textvariable=sub_exe)
+subtitle_extension_varible = StringVar()
+e2 = Entry(app,textvariable=subtitle_extension_varible)
 e2.grid(row=2,column=2)
 
 b3 = Button(app,text="Selsct folder",command=select_folder)
 b3.grid(row=3,column=1,pady=10)
 
 
-folder_exe = StringVar()
-e4 = Entry(app,textvariable=folder_exe)
+folder_path_variable = StringVar()
+e4 = Entry(app,textvariable=folder_path_variable)
 e4.grid(row=3,column=2,ipadx=50)
 e3 = Listbox(app)
 e3.grid(row=1,column=3,rowspan=4,padx=20,ipadx=150,pady=10)
